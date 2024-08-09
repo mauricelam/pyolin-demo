@@ -2,13 +2,12 @@ FROM --platform=i386 i386/debian:buster
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get clean && apt-get update && apt-get -y upgrade
 RUN apt-get -y install apt-utils \
-	python3 python3-pip \
+	python3 pipx \
 	fakeroot dbus base whiptail hexedit \
 	patch wamerican ucf manpages \
 	file make dialog \
 	less cowsay
-RUN pip3 install --no-cache-dir --upgrade pip && \
-    pip3 install --no-cache-dir pyolin 
+RUN pipx install pyolin
 RUN useradd -m user && echo "user:password" | chpasswd
 COPY --chown=user:user ./examples /home/user/examples
 RUN chmod -R +x  /home/user/examples/lua
