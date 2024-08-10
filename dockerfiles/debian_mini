@@ -2,11 +2,7 @@ FROM --platform=i386 i386/debian:bookworm
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get clean && apt-get update && apt-get -y upgrade
 RUN apt-get -y install apt-utils \
-	python3 python3-pip \
-	fakeroot dbus base whiptail hexedit \
-	patch wamerican ucf manpages \
-	file make dialog \
-	less cowsay
+	python3 python3-pip wamerican less
 RUN python3 -m pip install --break-system-packages pyolin
 RUN alias pyolin="python3 -m pyolin"
 RUN useradd -m user && echo "user:password" | chpasswd
