@@ -7,7 +7,7 @@ RUN apt-get -y install apt-utils \
 	patch wamerican ucf manpages \
 	file make dialog \
 	less cowsay
-RUN python3 -m pip install pyolin
+RUN python3 -m pip install --break-system-packages pyolin
 RUN alias pyolin="python3 -m pyolin"
 RUN useradd -m user && echo "user:password" | chpasswd
 COPY --chown=user:user ./examples /home/user/examples
